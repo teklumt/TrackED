@@ -1,6 +1,10 @@
+"use client";
 import Image from "next/image";
+import { useState } from "react";
+import FeedbackModal from "@/components/ModalWindows/FeedbackModal";
 
 function page() {
+  const [feedback, setFeedback] = useState(false);
   return (
     <section>
       <div
@@ -169,6 +173,15 @@ function page() {
           />
         </div>
       </div>
+      <div className="my-16 justify-center items-center flex">
+        <button
+          className="bg-Primarys w-[150px] h-[36px] text-primeGray rounded-md"
+          onClick={() => setFeedback(true)}
+        >
+          Give Feedback
+        </button>
+      </div>
+      {feedback && <FeedbackModal setUploadAndVerify={setFeedback} />}
     </section>
   );
 }

@@ -8,9 +8,12 @@ import UploadC from "@/components/Upload/UploadC";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import VerifyDocumentModal from "@/components/ModalWindows/VerifyDocumentModal";
 
+import FeedbackModal from "@/components/ModalWindows/FeedbackModal";
+
 function Page() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [UploadAndVerify, setUploadAndVerify] = useState(false);
+  const [feedback, setFeedback] = useState(false);
 
   const Documents = [
     {
@@ -144,10 +147,15 @@ function Page() {
           />
         )}
         <div className="my-10 flex justify-center">
-          <button className="bg-Primarys text-white font-bold p-1 rounded-md w-[150px]">
+          <button
+            className="bg-Primarys text-white font-bold p-1 rounded-md w-[150px]"
+            onClick={() => setFeedback(true)}
+          >
             Give Feedback
           </button>
         </div>
+
+        {feedback && <FeedbackModal setUploadAndVerify={setFeedback} />}
       </div>
     </div>
   );

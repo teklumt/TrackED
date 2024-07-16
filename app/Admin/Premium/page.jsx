@@ -1,3 +1,5 @@
+"use client";
+
 import Headline2 from "@/components/Reuseable/Headline2";
 import ResponsiveTable2 from "@/components/Table/Responsivetable2";
 import Image from "next/image";
@@ -5,6 +7,8 @@ import Link from "next/link";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { TiDeleteOutline } from "react-icons/ti";
+import { useState } from "react";
+import HireModal from "@/components/ModalWindows/HireModal";
 const tableData = [
   {
     id: "Code#884",
@@ -59,12 +63,15 @@ const tableData = [
   },
 ];
 function page() {
+  const [hireModal, setHireModal] = useState(false);
   return (
     <section>
       <Headline2 headtext={"Premium"} />
       <div className="mb-10 ">
         <div className="flex mb-3 shadow-md pb-4  gap-10 justify-center font-semibold text-yellow-500">
-          <div className="cursor-pointer">Hire</div>
+          <div className="cursor-pointer" onClick={() => setHireModal(true)}>
+            Hire
+          </div>
           <Link href={"Proposals"}>Proposals</Link>
         </div>
       </div>
@@ -222,6 +229,7 @@ function page() {
             />
           </div>
         </div>
+        {hireModal && <HireModal setUploadAndVerify={setHireModal} />}
       </main>
     </section>
   );

@@ -1,8 +1,14 @@
+"use client";
+
+import { useState } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { FiLogOut } from "react-icons/fi";
 import { MdMenu } from "react-icons/md";
+import Upgrade from "../ModalWindows/Upgrade";
+import HireModal from "../ModalWindows/HireModal";
 
 function ReusableHeader({
   logo,
@@ -13,8 +19,11 @@ function ReusableHeader({
   showMenu,
   setShowMenu,
 }) {
+  const [upgradeModal, setUpgradeModal] = useState(false);
+  const [hireModal, setHireModal] = useState(false);
+
   return (
-    <>
+    <section>
       <header className=" items-center justify-between px-[2rem] h-[70px] shadow-md border hidden 900px:flex">
         <Link href="/">
           <Image
@@ -33,11 +42,12 @@ function ReusableHeader({
               className={`cursor-pointer  ${
                 item.premium ? "text-yellow-500" : "text-gray-600"
               }`}
+              onClick={item.text === "Hire" ? () => setHireModal(true) : null}
             >
               {item.href ? (
                 <Link href={item.href}>{item.text}</Link>
               ) : (
-                <a href={item.href}>{item.text}</a>
+                <button>{item.text}</button>
               )}
             </div>
           ))}
@@ -48,17 +58,19 @@ function ReusableHeader({
               <IoMdNotificationsOutline size={30} />
             </div>
             <div
-              className=" rounded-full p-1 w-[90px] text-center bg-premium  text-white font-semibold"
-              onClick={() => handleSetUpgrade}
+              className=" rounded-full p-1 cursor-pointer w-[90px] text-center bg-premium  text-white font-semibold"
+              onClick={() => setUpgradeModal(true)}
             >
               Upgrade
             </div>
             <div className="text-xl font-semibold border rounded-full w-[35px] h-[35px] justify-center items-center text-center flex bg-Primarys text-white">
               {name}
             </div>
-            <div>
-              <FiLogOut size={35} className="font-bold" />
-            </div>
+            <Link href="/">
+              <div className="cursor-pointer">
+                <FiLogOut size={35} className="font-bold" />
+              </div>
+            </Link>
           </div>
         )}
         {type === 2 && (
@@ -66,9 +78,11 @@ function ReusableHeader({
             <div className="text-xl font-semibold border rounded-full w-[35px] h-[35px] justify-center items-center text-center flex bg-Primarys text-white">
               {name}
             </div>
-            <div>
-              <FiLogOut size={35} className="font-bold" />
-            </div>
+            <Link href="/">
+              <div className="cursor-pointer">
+                <FiLogOut size={35} className="font-bold" />
+              </div>
+            </Link>
           </div>
         )}
       </header>
@@ -118,7 +132,7 @@ function ReusableHeader({
                 <div
                   className=" text-yellow-500 cursor-pointer  hover:text-yellow-400 hover:text-bold"
                   onClick={() => {
-                    handleSetUpgrade();
+                    setUpgradeModal(true);
                     setShowMenu((showMenu) => !showMenu);
                   }}
                 >
@@ -138,12 +152,6 @@ function ReusableHeader({
           className="absolute right-10  top-[80px] 900px:hidden cursor-pointer"
           onClick={() => setShowMenu((showMenu) => !showMenu)}
         >
-          {/* {!showMenu && (
-            <MdMenu
-              size={35}
-              className="font-bold text-black  border rounded-md bg-white "
-            />
-          )} */}
           {showMenu && (
             <p className="text-lg ml-3 text-black cursor-pointer font-semibold">
               X
@@ -168,7 +176,9 @@ function ReusableHeader({
           )}
         </div>
       </div>
-    </>
+      {upgradeModal && <Upgrade setUploadAndVerify={setUpgradeModal} />}
+      {hireModal && <HireModal setUploadAndVerify={setHireModal} />}
+    </section>
   );
 }
 

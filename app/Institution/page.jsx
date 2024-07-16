@@ -7,6 +7,8 @@ import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { MdArrowDownward, MdArrowUpward } from "react-icons/md";
 import { TiDeleteOutline } from "react-icons/ti";
 import { useState } from "react";
+
+import FeedbackModal from "@/components/ModalWindows/FeedbackModal";
 const tableData1 = [
   {
     checked: true,
@@ -169,6 +171,7 @@ const tableData2 = [
 ];
 
 function page() {
+  const [feedback, setFeedback] = useState(false);
   return (
     <section>
       <div className="flex relative justify-center gap-4">
@@ -449,10 +452,14 @@ function page() {
       </div>
 
       <div className="flex justify-center mb-6">
-        <button className="bg-Primarys  rounded-md p-1  text-primeGray">
+        <button
+          className="bg-Primarys  rounded-md p-1  text-primeGray"
+          onClick={() => setFeedback(true)}
+        >
           Give Feedback
         </button>
       </div>
+      {feedback && <FeedbackModal setUploadAndVerify={setFeedback} />}
     </section>
   );
 }

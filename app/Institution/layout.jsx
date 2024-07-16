@@ -25,7 +25,7 @@ function Layout({ children }) {
           logo="/assets/temologo.png"
           middleItems={[
             { href: "/Institution/", text: "Home", premium: false },
-            { href: "/Hire", text: "Hire", premium: true },
+            { href: "", text: "Hire", premium: true },
             {
               href: "/Institution/Proposals",
               text: "Proposals",
