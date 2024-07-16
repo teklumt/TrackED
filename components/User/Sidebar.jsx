@@ -18,13 +18,14 @@ function Sidebar({ isOpen, university = [], isSidebarOpen, setIsSidebarOpen }) {
         </button>
         <div className="p-4 flex flex-col justify-center">
           <div className="flex items-center flex-col">
-            <Image
-              src="/assets/persons/person3.jpg"
-              alt="Profile"
-              className="w-[80px] h-[100px] rounded-full"
-              width={80}
-              height={80}
-            />
+            <div
+              className="w-[90px] h-[90px] rounded-full"
+              style={{
+                backgroundImage: "url(/assets/persons/person3.jpg)",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            ></div>
             <div className="ml-4">
               <h2 className="font-bold text-lg">Alex Lopez</h2>
               <p className="text-sm text-gray-600 ">Alex@gmail.com</p>

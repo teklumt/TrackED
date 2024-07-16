@@ -33,13 +33,21 @@ function DocumentCard({ degree, institution, gpa, status, image, desc }) {
   return (
     <div className="bg-white rounded-md shadow-lg sm:w-[494px] w-full">
       <div className="flex ">
-        <Image
+        <div
+          className="w-[100px] h-[100px]"
+          style={{
+            backgroundImage: `url(${image})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        ></div>
+        {/* <Image
           src={image}
           alt="Certificate"
-          className="w-24 h-24 object-cover rounded-md"
-          width={96}
-          height={96}
-        />
+          className="rounded-md"
+          width={100}
+          height={100}
+        /> */}
         <div className="ml-4 flex-1 p-1">
           <h2 className="text-[14px] font-semibold">{degree}</h2>
           <p className="text-sm text-gray-500">{institution}</p>

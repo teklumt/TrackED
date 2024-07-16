@@ -1,6 +1,10 @@
 import Footer from "@/components/Reuseable/Footer";
 import "@/styles/globals.css";
 
+import "@fontsource/anek-bangla";
+
+import "@fontsource/anek-bangla/400.css";
+
 export const metadata = {
   title: "TrackED",
   description:

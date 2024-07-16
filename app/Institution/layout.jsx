@@ -24,8 +24,13 @@ function Layout({ children }) {
         <ReusableHeader
           logo="/assets/temologo.png"
           middleItems={[
-            { href: "/Personal/", text: "Home", premium: false },
-            { href: "/Personal/Jobs", text: "Jobs", premium: true },
+            { href: "/Institution/", text: "Home", premium: false },
+            { href: "/Hire", text: "User", premium: true },
+            {
+              href: "/Institution/Proposals",
+              text: "Proposals",
+              premium: true,
+            },
           ]}
           name={"T"}
           type={4}

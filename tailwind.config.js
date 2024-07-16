@@ -16,6 +16,7 @@ module.exports = {
         Primarys: "#0D0C22",
         primeGray: "#F4F4FB",
         premium: "#FFC100",
+        titleGray: "#565D6D",
       },
       fontFamily: {
         "dm-sans": ['"DM Sans"', "sans-serif"],
@@ -24,6 +25,7 @@ module.exports = {
       },
       screens: {
         "900px": "900px",
+        "400px": "400px",
       },
     },
   },
