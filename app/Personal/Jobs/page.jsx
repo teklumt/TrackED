@@ -9,7 +9,7 @@ import { GrPrevious } from "react-icons/gr";
 import ApplyModal from "@/components/ModalWindows/ApplyModal";
 import { useState } from "react";
 
-function page() {
+function Page() {
   const slides = [
     {
       image: "/assets/Job/campany/Group.png",
@@ -267,4 +267,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
