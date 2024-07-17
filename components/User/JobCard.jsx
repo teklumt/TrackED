@@ -8,7 +8,15 @@ import { PiBuildingOfficeThin } from "react-icons/pi";
 
 import { FaStar } from "react-icons/fa";
 
-const JobCard = ({ image, title, price, employer, location, type }) => {
+const JobCard = ({
+  image,
+  title,
+  price,
+  employer,
+  location,
+  type,
+  setShowModal,
+}) => {
   return (
     <div className="flex rounded-md border bg-[#FFFFFF] shadow-md justify-between p-2 w-[337px] h-[223px] ">
       <div className="">
@@ -46,7 +54,10 @@ const JobCard = ({ image, title, price, employer, location, type }) => {
           <FaRegStar />
         </div>
 
-        <button className="text-[12px] w-[45px] h-[28px] bg-[#EFB034] text-white rounded-md font-bold">
+        <button
+          className="text-[12px] w-[45px] h-[28px] bg-[#EFB034] text-white rounded-md font-bold"
+          onClick={() => setShowModal(true)}
+        >
           Apply
         </button>
       </div>

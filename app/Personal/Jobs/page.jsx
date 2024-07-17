@@ -1,9 +1,13 @@
+"use client";
 import Headlines from "@/components/Reuseable/Headlines";
 import Swip from "@/components/Reuseable/Swip";
 import SwipCards from "@/components/Reuseable/SwipCards";
 import JobCard from "@/components/User/JobCard";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
+
+import ApplyModal from "@/components/ModalWindows/ApplyModal";
+import { useState } from "react";
 
 function page() {
   const slides = [
@@ -142,6 +146,9 @@ function page() {
       type: "Full Time",
     },
   ];
+
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <section className=" ">
       <div className="bg-primeGray lg:mt-[-20px]">
@@ -232,6 +239,7 @@ function page() {
             employer={slide.employer}
             location={slide.location}
             type={slide.type}
+            setShowModal={setShowModal}
           />
         ))}
       </div>
@@ -253,6 +261,8 @@ function page() {
           Give Feedback
         </button>
       </div>
+
+      {showModal && <ApplyModal setUploadAndVerify={setShowModal} />}
     </section>
   );
 }

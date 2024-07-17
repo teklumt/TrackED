@@ -6,7 +6,7 @@ import { BiHide } from "react-icons/bi";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import { MdArrowDownward, MdArrowUpward } from "react-icons/md";
 import { TiDeleteOutline } from "react-icons/ti";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import FeedbackModal from "@/components/ModalWindows/FeedbackModal";
 const tableData1 = [
@@ -172,6 +172,64 @@ const tableData2 = [
 
 function page() {
   const [feedback, setFeedback] = useState(false);
+  const [filteredDocuments, setFilteredDocuments] = useState([]);
+  const [verifiedDocuments, setVerifiedDocuments] = useState([]);
+  const [waitingDocuments, setWaitingDocuments] = useState([]);
+  const [userdata, setUserdata] = useState(null);
+  const [userDocuments, setUserDocuments] = useState([]);
+
+  useEffect(() => {
+    const email = localStorage.getItem("Email");
+    async function fetchData() {
+      try {
+        const response = await fetch(`/api/user/${email}`, {
+          method: "GET",
+        });
+        const result = await response.json();
+        setUserdata(result);
+
+        setFilteredDocuments(result.Documents);
+        localStorage.setItem("Userdata", JSON.stringify(result));
+      } catch (error) {
+        console.error("Failed to fetch the data", error);
+      }
+    }
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    async function fetchDocuments() {
+      try {
+        const response = await fetch("/api/Documents", {
+          method: "GET",
+        });
+        const result = await response.json();
+        setFilteredDocuments(result);
+        setUserDocuments(result);
+      } catch (error) {
+        console.error("Failed to fetch the data", error);
+      }
+    }
+    fetchDocuments();
+  }, [userdata]);
+
+  useEffect(() => {
+    if (userdata) {
+      const verified = filteredDocuments.filter(
+        (doc) =>
+          (doc.status.toUpperCase() === "ACCEPTED" ||
+            doc.status.toUpperCase() === "REJECTED") &&
+          doc.to === userdata.fname
+      );
+      const waiting = filteredDocuments.filter(
+        (doc) =>
+          doc.status.toUpperCase() === "WAITING" && doc.to === userdata.fname
+      );
+      setWaitingDocuments(waiting);
+      setVerifiedDocuments(verified);
+    }
+  }, [filteredDocuments, userdata]);
+
   return (
     <section>
       <div className="flex relative justify-center gap-4">
@@ -182,13 +240,13 @@ function page() {
               fontFamily: "calibri",
             }}
           >
-            Addis Ababa Science and Technology University
+            {userdata?.fname} {userdata?.lname}
           </h1>
         </div>
         <div
           className="md:w-[709px] h-[350px]"
           style={{
-            backgroundImage: "url(/assets/Headline/AASTU.jpg)",
+            backgroundImage: `url(${userdata?.photo.split("public")[1]})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -223,7 +281,9 @@ function page() {
                 <p>Total Documents</p>
               </div>
               <div className="flex items-center gap-2">
-                <p className="text-[25px] font-semibold">1499</p>
+                <p className="text-[25px] font-semibold">
+                  {filteredDocuments?.length}
+                </p>
                 <p className="w-[70px] border text-[#117B34] text-[16px] font-semibold flex justify-center items-center rounded-full h-[36px] bg-[#EEFDF3]">
                   <MdArrowUpward className="mr-[6px]" size={17} /> 5%
                 </p>
@@ -244,7 +304,13 @@ function page() {
                 <p>Verification Requests</p>
               </div>
               <div className="flex items-center gap-2">
-                <p className="text-[25px] font-semibold">490</p>
+                <p className="text-[25px] font-semibold">
+                  {
+                    filteredDocuments?.filter(
+                      (doc) => doc.status.toUpperCase() === "WAITING"
+                    ).length
+                  }
+                </p>
                 <p className="w-[70px] border text-[#117B34] text-[16px] font-semibold flex justify-center items-center rounded-full h-[36px] bg-[#EEFDF3]">
                   <MdArrowUpward className="mr-[6px]" size={17} /> 12%
                 </p>
@@ -265,7 +331,15 @@ function page() {
                 <p>Verified Documents </p>
               </div>
               <div className="flex items-center gap-2">
-                <p className="text-[25px] font-semibold text-[#EFB034]">1350</p>
+                <p className="text-[25px] font-semibold text-[#EFB034]">
+                  {
+                    filteredDocuments?.filter(
+                      (doc) =>
+                        doc.status.toUpperCase() === "ACCEPTED" ||
+                        doc.status.toUpperCase() === "REJECTED"
+                    ).length
+                  }
+                </p>
                 <p className="w-[70px] border text-[#DE3B40] text-[16px] font-semibold flex justify-center items-center rounded-full h-[36px] bg-[#FDF2F2]">
                   <MdArrowDownward className="mr-[6px]" size={17} /> 25%
                 </p>
@@ -322,8 +396,14 @@ function page() {
         <div className="mb-32">
           <ResponsiveDocumentTable
             tableData={tableData1}
+            tableveri={
+              filteredDocuments?.filter(
+                (doc) => doc.status.toUpperCase() === "ACCEPTED"
+              ) || verifiedDocuments
+            }
             type={"inst"}
             service={"Veri"}
+            setFilteredDocuments={setFilteredDocuments}
           />
 
           <div className="flex flex-wrap  items-center justify-center  400px:justify-between gap-5 mt-2  mb-2 ">
@@ -410,8 +490,16 @@ function page() {
         <div className="mb-32">
           <ResponsiveDocumentTable
             tableData={tableData2}
+            tableveri={
+              filteredDocuments?.filter(
+                (doc) =>
+                  doc.status.toUpperCase() === "WAITING" ||
+                  doc.status.toUpperCase() === "REJECTED"
+              ) || waitingDocuments
+            }
             type={"inst"}
             service={"request"}
+            setFilteredDocuments={setFilteredDocuments}
           />
 
           <div className="flex flex-wrap  items-center justify-center  400px:justify-between gap-5 mt-2  mb-2 ">

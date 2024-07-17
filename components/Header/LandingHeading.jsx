@@ -36,10 +36,10 @@ function LandingHeading() {
         </div>
         <div className="flex  items-center">
           <div className=" cursor-pointer w-[94px] h-[36px] flex items-center justify-center font-bold  text-[16px]">
-            <Link href={"/Login"}> Login</Link>
+            <Link href={"/auth"}> Login</Link>
           </div>
           <div className="cursor-pointer  border w-[94px] h-[36px] flex items-center justify-center font-bold  text-[16px] text-white bg-Primarys rounded-md ">
-            <Link href={"/SignUp"}>Sign Up</Link>
+            <Link href={"/auth/Signup"}>Sign Up</Link>
           </div>
         </div>
       </header>

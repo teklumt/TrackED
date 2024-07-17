@@ -29,14 +29,14 @@ const DocumentCardDots = styled.div`
   }
 `;
 
-function DocumentCard({ degree, institution, gpa, status, image, desc }) {
+function DocumentCard({ degree, institution, gpa, status, image, desc, doc }) {
   return (
     <div className="bg-white rounded-md shadow-lg sm:w-[494px] w-full">
       <div className="flex ">
         <div
           className="w-[100px] h-[100px]"
           style={{
-            backgroundImage: `url(${image})`,
+            backgroundImage: `url(${doc?.document?.split("public")[1]})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -49,12 +49,12 @@ function DocumentCard({ degree, institution, gpa, status, image, desc }) {
           height={100}
         /> */}
         <div className="ml-4 flex-1 p-1">
-          <h2 className="text-[14px] font-semibold">{degree}</h2>
-          <p className="text-sm text-gray-500">{institution}</p>
+          <h2 className="text-[14px] font-semibold">{doc?.name}</h2>
+          <p className="text-sm text-gray-500">{doc?.institution}</p>
           <div className="sm:flex mt-2 mb-1 hidden ">
             <div className="flex flex-col items-center mr-4 w-[108px] h-[64px] bg-primeGray justify-center rounded-md">
               <span className="text-[13px] text-Primarys">GPA</span>
-              <span className="text-[13px] font-bold">{gpa}</span>
+              <span className="text-[13px] font-bold">{doc?.grade}</span>
               <div className="flex text-[12px]">
                 <span className="text-yellow-400">&#9733;</span>
                 <span className="text-yellow-400">&#9733;</span>
@@ -67,14 +67,16 @@ function DocumentCard({ degree, institution, gpa, status, image, desc }) {
               <span className="text-[12px] font-medium text-Primarys ">
                 STATUS
               </span>
-              <span className="text-[12px] font-bold text-black">{status}</span>
+              <span className="text-[12px] font-bold text-black">
+                {doc?.status}
+              </span>
 
-              {status === "Verified" ? (
+              {doc?.status.toUpperCase() === "VERIFIED" ? (
                 <span className="text-green-500">
                   <FaRegCheckCircle />
                 </span>
-              ) : status === "Waiting" ? (
-                <span className="text-yellow-500 ">
+              ) : doc?.status.toUpperCase() === "WAITING" ? (
+                <span className="text-yellow-500">
                   <RiLoader2Fill />
                 </span>
               ) : (
@@ -105,7 +107,9 @@ function DocumentCard({ degree, institution, gpa, status, image, desc }) {
       <div className="p-4 border-t border-gray-200">
         <p className="text-sm text-gray-600">About</p>
         <p className="text-sm text-gray-500 mt-2">
-          {desc.length > 50 ? desc.slice(0, 70) + "..." : desc}
+          {doc.about?.length > 50
+            ? doc?.about?.slice(0, 70) + "..."
+            : doc?.about}
         </p>
       </div>
     </div>

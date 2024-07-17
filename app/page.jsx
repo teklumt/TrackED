@@ -59,7 +59,7 @@ function page() {
         buttonTextPrimary="Join us now"
         buttonTextSecondary="Learn more"
         imageUrl="/assets/maninoffice.jpg"
-        URL1="/SignUp"
+        URL1="/auth/Signup"
         URL2="/#feature"
       />
       <section id="feature" className="sm:mt-5 sm:mb-10">
@@ -220,7 +220,7 @@ function page() {
                   30-day free trial
                 </li>
               </ul>
-              <Link href="/SignUp">
+              <Link href="/auth/Signup">
                 <button className="w-full py-2 border border-primary text-primary rounded-md bg-white">
                   Sign Up
                 </button>
@@ -260,7 +260,7 @@ function page() {
                   30-day free trial
                 </li>
               </ul>
-              <Link href="/SignUp">
+              <Link href="/auth/Signup">
                 <button className="w-full bg-Primarys text-white py-2 border border-primary text-primary rounded-md mt-5">
                   Upgrade
                 </button>
