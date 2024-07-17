@@ -170,7 +170,7 @@ const tableData2 = [
   },
 ];
 
-function page() {
+function Page() {
   const [feedback, setFeedback] = useState(false);
   const [filteredDocuments, setFilteredDocuments] = useState([]);
   const [verifiedDocuments, setVerifiedDocuments] = useState([]);
@@ -552,4 +552,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

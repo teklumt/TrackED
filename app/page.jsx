@@ -192,7 +192,7 @@ function page() {
                 Perfect for everyone
               </p>
               <div className="text-3xl font-bold mb-2">
-                $0<span className="text-lg font-normal">/month</span>
+                $3<span className="text-lg font-normal">/month</span>
               </div>
               <ul className="mb-6 space-y-2">
                 <li className="flex items-center">

@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import FeedbackModal from "@/components/ModalWindows/FeedbackModal";
 import ResponsiveDocumentTable from "@/components/Table/ResponsiveDocumentTable";
 import { BiHide } from "react-icons/bi";
@@ -9,7 +9,7 @@ import { TiDeleteOutline } from "react-icons/ti";
 
 import { useForm } from "react-hook-form";
 
-function page() {
+function Page() {
   const [feedback, setFeedback] = useState(false);
   const [filteredDocuments, setFilteredDocuments] = useState([]);
   const [verifiedDocuments, setVerifiedDocuments] = useState([]);
@@ -58,9 +58,9 @@ function page() {
     if (userdata) {
       const verified = filteredDocuments.filter(
         (doc) =>
-          (doc.status.toUpperCase() === "ACCEPTED" ||
-            doc.status.toUpperCase() === "REJECTED") &&
-          doc.to === userdata.fname
+          (doc?.status.toUpperCase() === "ACCEPTED" ||
+            doc?.status.toUpperCase() === "REJECTED") &&
+          doc?.to === userdata.fname
       );
       const waiting = filteredDocuments.filter(
         (doc) =>
@@ -70,6 +70,7 @@ function page() {
       setVerifiedDocuments(verified);
     }
   }, [filteredDocuments, userdata]);
+  // console.log(filteredDocuments, "te");
 
   const handleDocumentUpload = async (data) => {
     const currUser = localStorage.getItem("Userdata");
@@ -83,7 +84,7 @@ function page() {
     formData.append("about", " ");
     formData.append("status", "Waiting");
     formData.append("date", new Date());
-    formData.append("owner", data.ownerName + "By" + data.companyName);
+    formData.append("owner", data.ownerName + "&" + data.companyName);
     formData.append("ownerSub", currUser.subscrbition);
 
     try {
@@ -307,7 +308,7 @@ function page() {
             <ResponsiveDocumentTable
               // tableData={tableData1}
               tableveri={filteredDocuments?.filter((doc) =>
-                doc?.owner.split("By").includes(userdata?.fname)
+                doc?.owner.split("&").includes(userdata?.fname)
               )}
               type={"inst"}
               service={"Veri"}
@@ -364,4 +365,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
