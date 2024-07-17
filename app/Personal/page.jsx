@@ -74,6 +74,8 @@ function Page() {
   const [userdata, setUserdata] = useState(null);
   const [userDocuments, setUserDocuments] = useState([]);
 
+  const [Documents, setDocuments] = useState([]);
+
   const [filteredDocuments, setFilteredDocuments] = useState(Documents);
 
   const handleFilter = (e) => {
@@ -94,13 +96,14 @@ function Page() {
     const email = localStorage.getItem("Email");
     async function fetchData() {
       try {
-        const response = await fetch(`/api/user`, {
+        const response = await fetch(`/api/user/${email}`, {
           method: "GET",
         });
         const result = await response.json();
         setUserdata(result);
-        // setUserDocuments(result.Documents);
+
         setFilteredDocuments(result.Documents);
+
         localStorage.setItem("Userdata", JSON.stringify(result));
       } catch (error) {
         console.error("Failed to fetch the data", error);
@@ -108,6 +111,7 @@ function Page() {
     }
     fetchData();
   }, []);
+  // console.log(userdata);
 
   useEffect(() => {
     async function fetchData() {
@@ -116,7 +120,6 @@ function Page() {
           method: "GET",
         });
         const result = await response.json();
-        // console.log(result);
         setFilteredDocuments(result);
         setUserDocuments(result);
       } catch (error) {
@@ -125,8 +128,6 @@ function Page() {
     }
     fetchData();
   }, [userdata]);
-
-  // console.log(filteredDocuments);
 
   return (
     <div className="min-h-screen flex">
@@ -193,7 +194,7 @@ function Page() {
         </div>
 
         <div className="flex justify-center flex-wrap gap-10 mt-10">
-          {filteredDocuments.map(
+          {filteredDocuments?.map(
             (job, index) =>
               job.owner === userdata?.email && (
                 <DocumentCard key={index} doc={job} />

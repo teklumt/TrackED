@@ -93,7 +93,9 @@ function DocumentCard({ degree, institution, gpa, status, image, desc, doc }) {
           </p>
           <PopUp>
             <p className="text-black cursor-pointer mb-2  hover:text-gray-600">
-              <RiFolderDownloadLine size={20} />
+              <a href={`${doc?.document?.split("public")[1]}`} download>
+                <RiFolderDownloadLine size={20} />
+              </a>
             </p>
             <p className="text-black cursor-pointer  mb-2 hover:text-gray-600">
               <RiShareLine size={20} />

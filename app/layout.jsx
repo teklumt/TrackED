@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Footer from "@/components/Reuseable/Footer";
 import "@/styles/globals.css";
 

@@ -28,7 +28,7 @@ function Sidebar({
             <div
               className="w-[90px] h-[90px] rounded-full"
               style={{
-                backgroundImage: `url(${userdata?.photo.split("public")[1]})`,
+                backgroundImage: `url(${userdata?.photo?.split("public")[1]})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -46,7 +46,7 @@ function Sidebar({
                 Verified Docs
               </p>
               <p className="text-gray-600   ">
-                {filteredDocuments.filter(
+                {filteredDocuments?.filter(
                   (doc) => doc.status.toUpperCase() === "VERIFIED"
                 ).length || 0}
               </p>
@@ -56,7 +56,7 @@ function Sidebar({
                 Waiting Docs
               </p>
               <p className="text-gray-600">
-                {filteredDocuments.filter(
+                {filteredDocuments?.filter(
                   (doc) => doc.status.toUpperCase() === "WAITING"
                 ).length || 0}
               </p>
@@ -65,14 +65,14 @@ function Sidebar({
           <div className="mt-6">
             <h3 className="text-lg font-semibold mb-1">#Institutions</h3>
             <div className="flex flex-wrap  gap-1">
-              {filteredDocuments.map((data, index) => (
+              {filteredDocuments?.map((data, index) => (
                 <div className="relative" key={index}>
                   <span
                     key={index}
                     className="bg-gray-200  text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded"
                   >
                     {data.owner === userdata?.email &&
-                      data.institution.split(" ")[0]}
+                      data?.institution?.split(" ")[0]}
                   </span>
 
                   <span className=" absolute top-0 right-1 cursor-pointer  rounded-full">
