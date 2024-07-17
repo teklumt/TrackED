@@ -27,3 +27,5 @@ const FeedbackSchema = new Schema({
     required: true,
   },
 });
+
+export default models.Feedback || model("Feedback", FeedbackSchema);

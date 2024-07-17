@@ -2,6 +2,7 @@ import { useState } from "react";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import Image from "next/image";
 import styled from "styled-components";
+import { useForm } from "react-hook-form";
 const Modal = styled.div`
   position: fixed;
   z-index: 1000;
@@ -25,6 +26,11 @@ const ModalContent = styled.div`
 `;
 
 const VerifyDocumentModal = ({ setUploadAndVerify }) => {
+  const { register, handleSubmit } = useForm();
+  const addFeedback = async (data) => {
+    setUploadAndVerify(false);
+  };
+
   return (
     <Modal>
       <ModalContent>
@@ -50,15 +56,19 @@ const VerifyDocumentModal = ({ setUploadAndVerify }) => {
                 X
               </p>
             </div>
-            <form className="p-6 space-y-4">
+            <form
+              className="p-6 space-y-4"
+              onSubmit={handleSubmit(addFeedback)}
+            >
               <div className="flex flex-col lg:flex-row justify-between gap-4">
                 <div className="">
                   <p classname="">Tag</p>
                   <div>
                     <input
                       type="text"
-                      name="DocumentName"
+                      name="tag"
                       className=" border h-[40px] w-[300px]   border-gray-400 bg-gray-100 rounded-lg p-2"
+                      {...register("tag")}
                     />
                   </div>
                 </div>
@@ -74,6 +84,7 @@ const VerifyDocumentModal = ({ setUploadAndVerify }) => {
                     cols="30"
                     rows="2"
                     onResize={false}
+                    {...register("feedback")}
                   ></textarea>
                 </p>
               </div>

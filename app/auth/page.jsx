@@ -25,13 +25,11 @@ export default function Page() {
       if (response.ok) {
         setSuccess("Login successful");
         localStorage.setItem("Email", data.email);
-        data.type === "Personal" &&
-          data.email === "a@gmail.com" &&
-          router.push("/Admin");
 
-        data.type === "Personal" && router.push("/Personal");
-        data.type === "Institution" && router.push("/Institution");
-        data.type === "Employer" && router.push("/Employer");
+        if (data.email === "teklumoges482@gmail.com") router.push("/Admin");
+        else if (data.type === "Personal") router.push("/Personal");
+        else if (data.type === "Institution") router.push("/Institution");
+        else if (data.type === "Employer") router.push("/Employer");
       } else {
         setError(result.message);
       }

@@ -28,7 +28,7 @@ function LandingHeading() {
             <a href="#price">Pricing</a>
           </div>
           <div className="cursor-pointer">
-            <Link href={"/AboutUs"}>About Us</Link>
+            <Link href={"#trust"}>Trust</Link>
           </div>
           <div className="cursor-pointer">
             <a href="#contact">Contact</a>

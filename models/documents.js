@@ -42,6 +42,9 @@ const DocumentSchema = new Schema({
     type: String,
     required: true,
   },
+  by: {
+    type: String,
+  },
 });
 
 export default models.Document || model("Document", DocumentSchema);

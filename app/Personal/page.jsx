@@ -94,7 +94,7 @@ function Page() {
     const email = localStorage.getItem("Email");
     async function fetchData() {
       try {
-        const response = await fetch(`/api/user/${email}`, {
+        const response = await fetch(`/api/user`, {
           method: "GET",
         });
         const result = await response.json();
