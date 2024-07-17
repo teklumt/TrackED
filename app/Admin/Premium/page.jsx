@@ -62,7 +62,7 @@ const tableData = [
     status: "Accepted",
   },
 ];
-function page() {
+function Page() {
   const [hireModal, setHireModal] = useState(false);
   return (
     <section>
@@ -235,4 +235,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

@@ -99,7 +99,7 @@ const tableData = [
   },
 ];
 
-function page() {
+function Page() {
   const [verifiedDocuments, setVerifiedDocuments] = useState([]);
   const [waitingDocuments, setWaitingDocuments] = useState([]);
   const [userdata, setUserdata] = useState(null);
@@ -235,4 +235,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
