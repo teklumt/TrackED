@@ -1,4 +1,4 @@
-Sure! Here's a polished and organized README for TrackED:
+
 
 ---
 
