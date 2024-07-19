@@ -6,17 +6,6 @@
 
 TrackED is a web application designed to provide a secure and efficient solution for educational document verification and job application management. The project uses modern web development technologies to create a reliable platform for verifying the authenticity of educational documents and facilitating job postings and applications.
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
-
 ## Overview
 
 TrackED aims to tackle the issue of fraudulent educational documents in Ethiopia by providing a platform for secure document tracking and verification. Additionally, TrackED includes features for job postings and application management, connecting verified graduates with potential employers.
