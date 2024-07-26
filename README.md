@@ -97,12 +97,9 @@ For any questions or inquiries, please contact:
 
 ---
 
-![image](https://github.com/user-attachments/assets/18b3387c-f631-4bed-9d8b-f17c3691bbd6)
-![image](https://github.com/user-attachments/assets/2467fe30-3d92-4481-9390-b75c0222fbc0)
-![image](https://github.com/user-attachments/assets/351b8999-618d-4d04-876f-a1e9ea56fa23)
-![image](https://github.com/user-attachments/assets/9a337527-9442-40b4-b041-778aac43eae9)
-![image](https://github.com/user-attachments/assets/f01d6586-50ad-4513-9139-5995fa6243c2)
-![image](https://github.com/user-attachments/assets/9d6894ca-226e-4a69-bf97-d1b1bcdad042)
-![image](https://github.com/user-attachments/assets/9ddaeeae-0462-41c8-890f-de747dc104ea)
-![image](https://github.com/user-attachments/assets/df40c112-7a70-4424-a8e8-e6a640876dab)
 
+
+![landing](https://github.com/user-attachments/assets/d3b18a2f-b169-4339-bda1-bea0d008d44d)
+![trust](https://github.com/user-attachments/assets/8d34647c-0fb3-4e82-a2a0-fa327be37072)
+![tr](https://github.com/user-attachments/assets/9c0e9cbf-97d8-4503-bab9-f49113c39020)
+![Screenshot 2024-07-17 110307](https://github.com/user-attachments/assets/77ed2bac-05d0-4bb1-802e-e42f874f8421)
